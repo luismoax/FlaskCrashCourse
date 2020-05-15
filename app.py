@@ -1,9 +1,13 @@
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/home/users/<string:name>/posts/<int:id>')
 def hello(id = -1, name = 'default'):
     return "Hello, " + name + " your id is: " + str(id)
