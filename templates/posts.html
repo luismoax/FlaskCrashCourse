@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Posts</title>
+{% endblock %}
+
+
+{% block body %}
+    <h1>All Posts</h1>
+
+    {% for item in posts %}
+        <h1>Title: {{ item['title'] }}</h1>
+        <h1>Content {{ item['content'] }}</h1>
+
+        {% if item.author %}
+            <h1>Author: {{ item.author }}</h1>
+        {% else %}
+            <h1>Author: 'N/A'</h1>
+        {% endif%}
+    {% endfor %}
+
+{% endblock %}
