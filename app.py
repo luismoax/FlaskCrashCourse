@@ -30,14 +30,7 @@ all_posts = [
     {
         'title': 'In Flames Post',
         'content': 'Testing this awesome micro-framework'
-    },
-    {
-        'title': 'Lorem Post',
-        'content': '''Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                      Aliquid voluptatum quia quaerat necessitatibus fugiat tenetur nostrum! 
-                      Suscipit sapiente quam quia. Repudiandae eos, cumque quas 
-                      atque aut amet corporis distinctio enim.'''
-    }
+    }    
 ]
 
 
@@ -60,8 +53,13 @@ def posts():
         db.session.commit()
         return redirect('/posts')
     else:
-        # get all posts from the db        
-        all_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
+        # get all posts from the db  
+              
+        added_post = BlogPost.query.order_by(BlogPost.date_posted).all()
+        
+        for post in added_post:
+            all_posts.append(post)
+        
         return render_template('posts.html', posts = all_posts)
         
 

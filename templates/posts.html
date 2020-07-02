@@ -21,12 +21,12 @@
 
     {% for item in posts %}
         <h1>Title: {{ item['title'] }}</h1>
-        <h1>Content {{ item['content'] }}</h1>
+        <div>Content: {{ item['content'] }}</div>
 
         {% if item.author %}
-            <h1>Author: {{ item.author }}</h1>
+            Author: {{ item.author }}
         {% else %}
-            <h1>Author: 'N/A'</h1>
+            Author: 'N/A'
         {% endif%}
     {% endfor %}
 
