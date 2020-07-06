@@ -13,10 +13,10 @@
     <form action="/posts" method='POST'>
         Title: <input type="text" name="title" id="title">
         <br>
-        Author: <input type="text" name="author" id="author">
-        <br>
         Content: <input type="text" name="content" id="content">
         <br>
+        Author: <input type="text" name="author" id="author">
+        <br>        
         <input type="submit" value="Post">
     </form>
     <hr>
@@ -30,6 +30,12 @@
         {% else %}
             Author: 'N/A'
         {% endif%}
+        <br>
+        
+        <a href = '/posts/delete/{{item.id}}'> Delete </a>
+        <br>
+        <a href = '/posts/edit/{{item.id}}'> Edit </a>
+
     {% endfor %}
 
 {% endblock %}
