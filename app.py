@@ -20,20 +20,6 @@ class BlogPost(db.Model):
     def __repr__(self): 
         return 'Blog Post ' + str(self.id)
 
-
-all_posts = [
-    {
-        'title': 'Amorphis Post',
-        'content': 'This is the content of post 1',
-        'author': 'Luismo'
-    },
-    {
-        'title': 'In Flames Post',
-        'content': 'Testing this awesome micro-framework'
-    }    
-]
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -44,23 +30,20 @@ def posts():
     if request.method == 'POST':        
         post_title = request.form['title']
         post_content = request.form['content']
+        post_author = request.form['author']
         
         # create the object
-        new_post = BlogPost(title = post_title, content = post_content, author = 'LUISMO')
+        new_post = BlogPost(title = post_title, content = post_content, author = post_author)
         # add to the db
         db.session.add(new_post)
         # commit the change
         db.session.commit()
         return redirect('/posts')
     else:
-        # get all posts from the db  
-              
-        added_post = BlogPost.query.order_by(BlogPost.date_posted).all()
+        # get all posts added so far
+        added_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
         
-        for post in added_post:
-            all_posts.append(post)
-        
-        return render_template('posts.html', posts = all_posts)
+        return render_template('posts.html', posts = added_posts)
         
 
 @app.route('/home/users/<string:name>/posts/<int:id>')
