@@ -31,7 +31,7 @@
 
     {% for item in posts %}
         <h1>Title: {{ item['title'] }}</h1>
-        <div>Content: {{ item['content'] }}</div>
+        <p style="white-space:pre-wrap">Content: {{ item['content'] }}</p>
 
         {% if item.author %}
             <small> Written by: {{ item.author }} on {{ item.date_posted }} </small>
