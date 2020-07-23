@@ -17,7 +17,7 @@
         <br>
         Author: <input type="text" name="author" id="author">
         <br>        
-        <input type="submit" value="Post">
+        <input type="button" class="btn btn-info" value="Post">
     </form>
     <hr>
 
@@ -26,15 +26,15 @@
         <div>Content: {{ item['content'] }}</div>
 
         {% if item.author %}
-            Author: {{ item.author }}
-        {% else %}
-            Author: 'N/A'
-        {% endif%}
-        <br>
+            <small> Written by: {{ item.author }} on {{ item.date_posted }} </small>
         
-        <a href = '/posts/delete/{{item.id}}'> Delete </a>        
-        <a href = '/posts/edit/{{item.id}}'> Edit </a>
-
+        {% else %}
+            <small> Written by: 'N/A' on on {{ item.date_posted }} </small>
+        {% endif%}
+        <br>        
+        <a class="btn btn-danger" href = '/posts/delete/{{item.id}}'> Delete </a>        
+        <a class="btn btn-secondary" href = '/posts/edit/{{item.id}}'> Edit </a>
+        
     {% endfor %}
 
 {% endblock %}
