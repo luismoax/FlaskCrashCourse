@@ -10,12 +10,20 @@
 
     <hr>
     <h2>Create a new Blog Post</h2>
+
     <form action="/posts" method='POST'>
-        Title: <input type="text" name="title" id="title">
+        Title: 
         <br>
-        Content: <input type="text" name="content" id="content">
+        <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title">
         <br>
-        Author: <input type="text" name="author" id="author">
+        Author: 
+        <br>
+        <input class="form-control" type="text" name="author" id="author" placeholder="Enter Author">
+        <br>
+        Content: 
+        <br>
+        <textarea class="form-control" type="text" name="content" id="content" placeholder="Enter Content" rows = 5></textarea>
+        <br>
         <br>        
         <input type="button" class="btn btn-info" value="Post">
     </form>

@@ -9,12 +9,19 @@
     
     <h2>Edit Blog Post</h2>
     <form action="/posts/edit/{{post.id}}" method='POST'>
-        Title: <input type="text" name="title" id="title" value="{{post.title}}">
+        Title:
+        <br> 
+        <input type="text" name="title" id="title" value="{{post.title}}">
         <br>
-        Content: <input type="text" name="content" id="content", value="{{post.content}}">
+        Content:
+        <br> 
+        <input type="text" name="content" id="content", value="{{post.content}}">
         <br>
-        Author: <input type="text" name="author" id="author", value="{{post.author}}">
-        <br>        
+        Author:
+        <br> 
+        <input type="text" name="author" id="author", value="{{post.author}}">
+        <br>
+        <br>
         <input class="btn btn-secondary" type="submit" value="Edit">
     </form>
     <hr>
