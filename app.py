@@ -30,26 +30,30 @@ def index():
 
 
 @app.route('/posts', methods=['GET', 'POST'])
-def posts():
-    # if is a post request
-    if request.method == 'POST':
-        post_title = request.form['title']
-        post_content = request.form['content']
-        post_author = request.form['author']
+def posts():    
+    # get all posts added so far
+    added_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
 
-        # create the object
-        new_post = BlogPost(
-            title=post_title, content=post_content, author=post_author)
+    return render_template('posts.html', posts=added_posts)
+    
+@app.route('/posts/new', methods=['GET', 'POST'])
+def newPost():
+    if request.method == 'POST':
+        new_post = BlogPost()
+        
+        new_post.title = request.form['title']
+        new_post.content = request.form['content']
+        new_post.author = request.form['author']
+        new_post.date_posted = datetime.today()
+        
         # add to the db
         db.session.add(new_post)
         # commit the change
         db.session.commit()
+        
         return redirect('/posts')
     else:
-        # get all posts added so far
-        added_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
-
-        return render_template('posts.html', posts=added_posts)
+        return render_template('new_post.html')
 
 
 @app.route('/posts/delete/<int:id>')

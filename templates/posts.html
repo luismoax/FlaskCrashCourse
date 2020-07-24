@@ -6,33 +6,15 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Posts</h1>
 
-    <hr>
-    <h2>Create a new Blog Post</h2>
-
-    <form action="/posts" method='POST'>
-        Title: 
-        <br>
-        <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title">
-        <br>
-        Author: 
-        <br>
-        <input class="form-control" type="text" name="author" id="author" placeholder="Enter Author">
-        <br>
-        Content: 
-        <br>
-        <textarea class="form-control" type="text" name="content" id="content" placeholder="Enter Content" rows = 5></textarea>
-        <br>
-        <br>        
-        <input type="submit" class="btn btn-info" value="Post">
-    </form>
-    <hr>
-
+    <br>
+    <div>
+        <h1 style="display:inline" class="text-uppercase">All Posts</h1>
+        <a style="display:inline" class="btn btn-success float-right" href="/posts/new" method="get"> + New Post</a>
+    </div>
     {% for item in posts %}
-        <h1>Title: {{ item['title'] }}</h1>
+        <h2>Title: {{ item['title'] }}</h2>
         <p style="white-space:pre-wrap">Content: {{ item['content'] }}</p>
-
         {% if item.author %}
             <small> Written by: {{ item.author }} on {{ item.date_posted }} </small>
         
@@ -41,7 +23,7 @@
         {% endif%}
         <br>        
         <a class="btn btn-danger" href = '/posts/delete/{{item.id}}'> Delete </a>        
-        <a class="btn btn-secondary" href = '/posts/edit/{{item.id}}'> Edit </a>
+        <a class="btn btn-primary" href = '/posts/edit/{{item.id}}'> Edit </a>
         
     {% endfor %}
 
